@@ -1,59 +1,100 @@
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Mail, MapPin, Clock, Send, MessageCircle } from 'lucide-react';
-import { personalInfo, socialProfiles } from '@/lib/data';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Mail, MapPin, Clock, Send, MessageCircle } from "lucide-react";
+import { personalInfo, socialProfiles } from "@/lib/data";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { toast } from "sonner";
 
 export default function ContactSection() {
   const { ref, isVisible } = useScrollAnimation();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast.success('Message sent successfully! Louis will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
+
+    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? "").trim().replace(/\/$/, "");
+    const apiUrl = `${apiBaseUrl}/api/contact`;
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        const errorMessage =
+          result?.errors?.join(" ") ||
+          result?.error ||
+          "Failed to send message. Please try again.";
+        toast.error(errorMessage);
+        return;
+      }
+
+      toast.success(
+        result.message ||
+          "Message sent successfully! Louis will get back to you soon.",
+      );
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast.error(
+        "Unable to submit the form. Please check your connection and try again.",
+      );
+      console.error("Contact submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   return (
-    <section id="contact" ref={ref} className="py-20 bg-white dark:bg-slate-900">
+    <section
+      id="contact"
+      ref={ref}
+      className="py-20 bg-white dark:bg-slate-900"
+    >
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div
+            className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">
               Let's Work Together
             </h2>
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Ready to bring your ideas to life? Get in touch and let's create something amazing together.
+              Ready to bring your ideas to life? Get in touch and let's create
+              something amazing together.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+            <div
+              className={`transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
+            >
               <Card className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700">
                 <CardHeader>
                   <CardTitle className="text-2xl text-slate-900 dark:text-slate-100">
@@ -63,7 +104,10 @@ export default function ContactSection() {
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-slate-700 dark:text-slate-300">
+                      <Label
+                        htmlFor="name"
+                        className="text-slate-700 dark:text-slate-300"
+                      >
                         Your Name
                       </Label>
                       <Input
@@ -76,9 +120,12 @@ export default function ContactSection() {
                         className="bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-600"
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-slate-700 dark:text-slate-300">
+                      <Label
+                        htmlFor="email"
+                        className="text-slate-700 dark:text-slate-300"
+                      >
                         Email Address
                       </Label>
                       <Input
@@ -92,9 +139,12 @@ export default function ContactSection() {
                         className="bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-600"
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-slate-700 dark:text-slate-300">
+                      <Label
+                        htmlFor="message"
+                        className="text-slate-700 dark:text-slate-300"
+                      >
                         Message
                       </Label>
                       <Textarea
@@ -108,7 +158,7 @@ export default function ContactSection() {
                         className="bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-600"
                       />
                     </div>
-                    
+
                     <Button
                       type="submit"
                       disabled={isSubmitting}
@@ -132,7 +182,9 @@ export default function ContactSection() {
             </div>
 
             {/* Contact Info & Chat with Secretary */}
-            <div className={`space-y-8 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+            <div
+              className={`space-y-8 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}
+            >
               {/* Contact Information */}
               <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-slate-200 dark:border-slate-700">
                 <CardContent className="p-6">
@@ -145,8 +197,12 @@ export default function ContactSection() {
                         <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                       </div>
                       <div>
-                        <p className="font-medium text-slate-900 dark:text-slate-100">Email</p>
-                        <p className="text-slate-600 dark:text-slate-300">{personalInfo.email}</p>
+                        <p className="font-medium text-slate-900 dark:text-slate-100">
+                          Email
+                        </p>
+                        <p className="text-slate-600 dark:text-slate-300">
+                          {personalInfo.email}
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -154,8 +210,12 @@ export default function ContactSection() {
                         <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                       </div>
                       <div>
-                        <p className="font-medium text-slate-900 dark:text-slate-100">Location</p>
-                        <p className="text-slate-600 dark:text-slate-300">{personalInfo.location}</p>
+                        <p className="font-medium text-slate-900 dark:text-slate-100">
+                          Location
+                        </p>
+                        <p className="text-slate-600 dark:text-slate-300">
+                          {personalInfo.location}
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -163,8 +223,12 @@ export default function ContactSection() {
                         <Clock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                       </div>
                       <div>
-                        <p className="font-medium text-slate-900 dark:text-slate-100">Response Time</p>
-                        <p className="text-slate-600 dark:text-slate-300">Usually within 24 hours</p>
+                        <p className="font-medium text-slate-900 dark:text-slate-100">
+                          Response Time
+                        </p>
+                        <p className="text-slate-600 dark:text-slate-300">
+                          Usually within 24 hours
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -180,14 +244,15 @@ export default function ContactSection() {
                       Chat with my Secretary
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300 text-sm">
-                      Get instant answers about my work, schedule meetings, or leave messages through my AI assistant
+                      Get instant answers about my work, schedule meetings, or
+                      leave messages through my AI assistant
                     </p>
                   </div>
-                  <Button 
+                  <Button
                     className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                     onClick={() => {
                       // This will be handled by the VirtualSecretary component
-                      const event = new CustomEvent('openSecretary');
+                      const event = new CustomEvent("openSecretary");
                       window.dispatchEvent(event);
                     }}
                   >
@@ -212,11 +277,15 @@ export default function ContactSection() {
                         className="hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105"
                         asChild
                       >
-                        <a href={profile.url} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={profile.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <span className="mr-2">
-                            {profile.icon === 'github' && '🐙'}
-                            {profile.icon === 'linkedin' && '💼'}
-                            {profile.icon === 'instagram' && '📸'}
+                            {profile.icon === "github" && "🐙"}
+                            {profile.icon === "linkedin" && "💼"}
+                            {profile.icon === "instagram" && "📸"}
                           </span>
                           {profile.name}
                         </a>
@@ -229,7 +298,9 @@ export default function ContactSection() {
           </div>
 
           {/* Footer */}
-          <div className={`mt-20 text-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div
+            className={`mt-20 text-center transition-all duration-1000 delay-600 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          >
             <div className="border-t border-slate-200 dark:border-slate-700 pt-8">
               <p className="text-lg font-medium text-slate-900 dark:text-slate-100 mb-2">
                 "{personalInfo.motto}"

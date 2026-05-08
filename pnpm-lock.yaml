@@ -107,6 +107,9 @@ dependencies:
   date-fns:
     specifier: ^3.6.0
     version: 3.6.0
+  dotenv:
+    specifier: ^16.3.1
+    version: 16.6.1
   embla-carousel-react:
     specifier: ^8.3.0
     version: 8.6.0(react@19.1.1)
@@ -122,6 +125,9 @@ dependencies:
   next-themes:
     specifier: ^0.4.6
     version: 0.4.6(react-dom@19.1.1)(react@19.1.1)
+  nodemailer:
+    specifier: ^6.9.5
+    version: 6.10.1
   prismjs:
     specifier: ^1.29.0
     version: 1.30.0
@@ -167,6 +173,9 @@ dependencies:
   uuid:
     specifier: ^10.0.0
     version: 10.0.0
+  validator:
+    specifier: ^13.9.0
+    version: 13.15.35
   vaul:
     specifier: ^1.1.2
     version: 1.1.2(@types/react-dom@19.1.8)(@types/react@19.1.11)(react-dom@19.1.1)(react@19.1.1)
@@ -183,7 +192,7 @@ devDependencies:
     version: 9.31.0
   '@metagptx/vite-plugin-source-locator':
     specifier: latest
-    version: 0.0.6(rollup@2.79.2)(vite@5.4.19)
+    version: 0.0.6(rollup@2.80.0)(vite@5.4.19)
   '@tailwindcss/aspect-ratio':
     specifier: ^0.4.2
     version: 0.4.2(tailwindcss@3.4.17)
@@ -941,7 +950,7 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.4
 
-  /@metagptx/vite-plugin-source-locator@0.0.6(rollup@2.79.2)(vite@5.4.19):
+  /@metagptx/vite-plugin-source-locator@0.0.6(rollup@2.80.0)(vite@5.4.19):
     resolution: {integrity: sha512-d/KGgro2y7TifBYe751q9mCYowI5pUDipjKtldFy1XmdygekXJ9HjG1oMZGgu3qcN9X3PQzvrvOg3mp2Ts7Stg==}
     engines: {node: '>=14.0.0'}
     requiresBuild: true
@@ -958,7 +967,7 @@ packages:
       '@vue/compiler-sfc': 3.5.17
       estree-walker: 3.0.3
       magic-string: 0.30.17
-      rollup-plugin-terser: 7.0.2(rollup@2.79.2)
+      rollup-plugin-terser: 7.0.2(rollup@2.80.0)
       vite: 5.4.19(@types/node@22.16.5)
     transitivePeerDependencies:
       - rollup
@@ -2928,7 +2937,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.25.1
-      caniuse-lite: 1.0.30001727
+      caniuse-lite: 1.0.30001792
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
@@ -2966,7 +2975,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001727
+      caniuse-lite: 1.0.30001792
       electron-to-chromium: 1.5.189
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.25.1)
@@ -2985,8 +2994,8 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
 
-  /caniuse-lite@1.0.30001727:
-    resolution: {integrity: sha512-pB68nIHmbN6L/4C6MH1DokyR3bYqFwjaSs/sWDHGj4CTcFtQUQMuJftVwWkXq7mNWOybD3KhUv3oWHoGxgP14Q==}
+  /caniuse-lite@1.0.30001792:
+    resolution: {integrity: sha512-hVLMUZFgR4JJ6ACt1uEESvQN1/dBVqPAKY0hgrV70eN3391K6juAfTjKZLKvOMsx8PxA7gsY1/tLMMTcfFLLpw==}
     dev: true
 
   /chalk@4.1.2:
@@ -3194,6 +3203,11 @@ packages:
     dependencies:
       '@babel/runtime': 7.27.6
       csstype: 3.1.3
+    dev: false
+
+  /dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
     dev: false
 
   /eastasianwidth@0.2.0:
@@ -3895,6 +3909,11 @@ packages:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
     dev: true
 
+  /nodemailer@6.10.1:
+    resolution: {integrity: sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==}
+    engines: {node: '>=6.0.0'}
+    dev: false
+
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
@@ -4326,7 +4345,7 @@ packages:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
-  /rollup-plugin-terser@7.0.2(rollup@2.79.2):
+  /rollup-plugin-terser@7.0.2(rollup@2.80.0):
     resolution: {integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==}
     deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
     peerDependencies:
@@ -4334,13 +4353,13 @@ packages:
     dependencies:
       '@babel/code-frame': 7.27.1
       jest-worker: 26.6.2
-      rollup: 2.79.2
+      rollup: 2.80.0
       serialize-javascript: 4.0.0
       terser: 5.43.1
     dev: true
 
-  /rollup@2.79.2:
-    resolution: {integrity: sha512-fS6iqSPZDs3dr/y7Od6y5nha8dW1YnbgtsyotCVvoFGKbERG++CVRFv1meyGDE1SNItQA8BrnCw7ScdAhRJ3XQ==}
+  /rollup@2.80.0:
+    resolution: {integrity: sha512-cIFJOD1DESzpjOBl763Kp1AH7UE/0fcdHe6rZXUdQ9c50uvgigvW97u3IcSeBwOkgqL/PXPBktBCh0KEu5L8XQ==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -4688,6 +4707,11 @@ packages:
   /uuid@10.0.0:
     resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
     hasBin: true
+    dev: false
+
+  /validator@13.15.35:
+    resolution: {integrity: sha512-TQ5pAGhd5whStmqWvYF4OjQROlmv9SMFVt37qoCBdqRffuuklWYQlCNnEs2ZaIBD1kZRNnikiZOS1eqgkar0iw==}
+    engines: {node: '>= 0.10'}
     dev: false
 
   /vaul@1.1.2(@types/react-dom@19.1.8)(@types/react@19.1.11)(react-dom@19.1.1)(react@19.1.1):
