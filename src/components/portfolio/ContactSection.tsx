@@ -22,7 +22,9 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? "").trim().replace(/\/$/, "");
+    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? "")
+      .trim()
+      .replace(/\/$/, "");
     const apiUrl = `${apiBaseUrl}/api/contact`;
 
     try {
