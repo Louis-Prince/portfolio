@@ -19,6 +19,41 @@ export const skills = [
   { name: "Problem Solving", level: 95, icon: "🧩" }
 ];
 
+export const projects = [
+  {
+    id: 1,
+    title: "FireGuard IoT System",
+    description:
+      "A smart fire detection and response system using sensors, automation, and alerts to help identify risks early.",
+    category: "IoT",
+    skills: ["IoT", "Sensors", "Automation", "Alerts"]
+  },
+  {
+    id: 2,
+    title: "Face Recognition Attendance System",
+    description:
+      "An AI-powered attendance solution using face detection and recognition with Raspberry Pi integration.",
+    category: "AI",
+    skills: ["MTCNN", "FaceNet", "Python", "Raspberry Pi"]
+  },
+  {
+    id: 3,
+    title: "E-learning Platform",
+    description:
+      "A SaaS-style learning dashboard with course management, user workflows, and authentication features.",
+    category: "Web App",
+    skills: ["React", "UI/UX", "Dashboard", "Authentication"]
+  },
+  {
+    id: 4,
+    title: "Agricultural Disease Detection",
+    description:
+      "A computer vision project focused on detecting banana plant diseases for Rwanda and East Africa.",
+    category: "AI",
+    skills: ["Computer Vision", "Image Recognition", "Machine Learning", "Agriculture"]
+  }
+];
+
 export const socialProfiles = [
   { name: "GitHub", url: "https://github.com/Louis-Prince", icon: "github" },
   { name: "LinkedIn", url: "https://www.linkedin.com/in/gatamba-louis-prince-b32b24285", icon: "linkedin" },
