@@ -1,21 +1,53 @@
 import { useState } from "react";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MapPin, Clock, Send, MessageCircle } from "lucide-react";
+
+import {
+  Mail,
+  MapPin,
+  Clock,
+  Send,
+  MessageCircle,
+  Trophy,
+} from "lucide-react";
+
+import {
+  FaGithub,
+  FaBehance,
+  FaLinkedin,
+  FaInstagram,
+} from "react-icons/fa";
+
+import { SiKaggle, SiHuggingface } from "react-icons/si";
+
 import { personalInfo, socialProfiles } from "@/lib/data";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { toast } from "sonner";
 
+// Social Icons Map
+const iconMap = {
+  github: FaGithub,
+  behance: FaBehance,
+  kaggle: SiKaggle,
+  huggingface: SiHuggingface,
+  linkedin: FaLinkedin,
+  instagram: FaInstagram,
+  zindi: Trophy,
+};
+
 export default function ContactSection() {
   const { ref, isVisible } = useScrollAnimation();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -25,6 +57,7 @@ export default function ContactSection() {
     const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? "")
       .trim()
       .replace(/\/$/, "");
+
     const apiUrl = `${apiBaseUrl}/api/contact`;
 
     try {
@@ -43,19 +76,26 @@ export default function ContactSection() {
           result?.errors?.join(" ") ||
           result?.error ||
           "Failed to send message. Please try again.";
+
         toast.error(errorMessage);
         return;
       }
 
       toast.success(
         result.message ||
-          "Message sent successfully! Louis will get back to you soon.",
+          "Message sent successfully! Louis will get back to you soon."
       );
-      setFormData({ name: "", email: "", message: "" });
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
     } catch (error) {
       toast.error(
-        "Unable to submit the form. Please check your connection and try again.",
+        "Unable to submit the form. Please check your connection and try again."
       );
+
       console.error("Contact submission error:", error);
     } finally {
       setIsSubmitting(false);
@@ -63,7 +103,7 @@ export default function ContactSection() {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -81,11 +121,16 @@ export default function ContactSection() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div
-            className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`text-center mb-16 transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">
               Let's Work Together
             </h2>
+
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
               Ready to bring your ideas to life? Get in touch and let's create
               something amazing together.
@@ -95,7 +140,11 @@ export default function ContactSection() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div
-              className={`transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
+              className={`transition-all duration-1000 delay-200 ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-8"
+              }`}
             >
               <Card className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700">
                 <CardHeader>
@@ -103,8 +152,12 @@ export default function ContactSection() {
                     Send Me a Message
                   </CardTitle>
                 </CardHeader>
+
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="space-y-6"
+                  >
                     <div className="space-y-2">
                       <Label
                         htmlFor="name"
@@ -112,6 +165,7 @@ export default function ContactSection() {
                       >
                         Your Name
                       </Label>
+
                       <Input
                         id="name"
                         name="name"
@@ -130,6 +184,7 @@ export default function ContactSection() {
                       >
                         Email Address
                       </Label>
+
                       <Input
                         id="email"
                         name="email"
@@ -149,6 +204,7 @@ export default function ContactSection() {
                       >
                         Message
                       </Label>
+
                       <Textarea
                         id="message"
                         name="message"
@@ -183,9 +239,13 @@ export default function ContactSection() {
               </Card>
             </div>
 
-            {/* Contact Info & Chat with Secretary */}
+            {/* Right Column */}
             <div
-              className={`space-y-8 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}
+              className={`space-y-8 transition-all duration-1000 delay-400 ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-8"
+              }`}
             >
               {/* Contact Information */}
               <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-slate-200 dark:border-slate-700">
@@ -193,41 +253,50 @@ export default function ContactSection() {
                   <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-4">
                     Get In Touch
                   </h3>
+
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
                         <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                       </div>
+
                       <div>
                         <p className="font-medium text-slate-900 dark:text-slate-100">
                           Email
                         </p>
+
                         <p className="text-slate-600 dark:text-slate-300">
                           {personalInfo.email}
                         </p>
                       </div>
                     </div>
+
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
                         <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                       </div>
+
                       <div>
                         <p className="font-medium text-slate-900 dark:text-slate-100">
                           Location
                         </p>
+
                         <p className="text-slate-600 dark:text-slate-300">
                           {personalInfo.location}
                         </p>
                       </div>
                     </div>
+
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
                         <Clock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                       </div>
+
                       <div>
                         <p className="font-medium text-slate-900 dark:text-slate-100">
                           Response Time
                         </p>
+
                         <p className="text-slate-600 dark:text-slate-300">
                           Usually within 24 hours
                         </p>
@@ -237,23 +306,25 @@ export default function ContactSection() {
                 </CardContent>
               </Card>
 
-              {/* Chat with Secretary CTA */}
+              {/* Chat with Secretary */}
               <Card className="border-slate-200 dark:border-slate-700 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20">
                 <CardContent className="p-6 text-center">
                   <div className="mb-4">
                     <MessageCircle className="w-12 h-12 text-green-600 dark:text-green-400 mx-auto mb-3" />
+
                     <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">
                       Chat with my Secretary
                     </h3>
+
                     <p className="text-slate-600 dark:text-slate-300 text-sm">
                       Get instant answers about my work, schedule meetings, or
                       leave messages through my AI assistant
                     </p>
                   </div>
+
                   <Button
                     className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                     onClick={() => {
-                      // This will be handled by the VirtualSecretary component
                       const event = new CustomEvent("openSecretary");
                       window.dispatchEvent(event);
                     }}
@@ -270,29 +341,37 @@ export default function ContactSection() {
                   <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4 text-center">
                     Connect with Me
                   </h3>
-                  <div className="flex justify-center gap-4">
-                    {socialProfiles.map((profile) => (
-                      <Button
-                        key={profile.name}
-                        variant="outline"
-                        size="sm"
-                        className="hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105"
-                        asChild
-                      >
-                        <a
-                          href={profile.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
+
+                  <div className="flex justify-center gap-4 flex-wrap">
+                    {socialProfiles.map((profile) => {
+                      const Icon =
+                        iconMap[
+                          profile.icon as keyof typeof iconMap
+                        ];
+
+                      return (
+                        <Button
+                          key={profile.name}
+                          variant="outline"
+                          size="sm"
+                          className="hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105"
+                          asChild
                         >
-                          <span className="mr-2">
-                            {profile.icon === "github" && "🐙"}
-                            {profile.icon === "linkedin" && "💼"}
-                            {profile.icon === "instagram" && "📸"}
-                          </span>
-                          {profile.name}
-                        </a>
-                      </Button>
-                    ))}
+                          <a
+                            href={profile.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center"
+                          >
+                            {Icon && (
+                              <Icon className="w-4 h-4 mr-2" />
+                            )}
+
+                            {profile.name}
+                          </a>
+                        </Button>
+                      );
+                    })}
                   </div>
                 </CardContent>
               </Card>
@@ -301,12 +380,17 @@ export default function ContactSection() {
 
           {/* Footer */}
           <div
-            className={`mt-20 text-center transition-all duration-1000 delay-600 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`mt-20 text-center transition-all duration-1000 delay-600 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
           >
             <div className="border-t border-slate-200 dark:border-slate-700 pt-8">
               <p className="text-lg font-medium text-slate-900 dark:text-slate-100 mb-2">
                 "{personalInfo.motto}"
               </p>
+
               <p className="text-slate-600 dark:text-slate-300">
                 © 2024 {personalInfo.name}. Crafted with passion and precision.
               </p>

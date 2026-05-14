@@ -1,9 +1,25 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Trophy } from "lucide-react";
+
+import { FaGithub, FaBehance, FaLinkedin, FaInstagram } from "react-icons/fa";
+
+import { SiKaggle, SiHuggingface } from "react-icons/si";
+
 import { projects, socialProfiles } from "@/lib/data";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
+// Icon mapping
+const iconMap = {
+  github: FaGithub,
+  behance: FaBehance,
+  kaggle: SiKaggle,
+  huggingface: SiHuggingface,
+  linkedin: FaLinkedin,
+  instagram: FaInstagram,
+  zindi: Trophy,
+};
 
 export default function ProjectsSection() {
   const { ref, isVisible } = useScrollAnimation();
@@ -18,11 +34,16 @@ export default function ProjectsSection() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div
-            className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`text-center mb-16 transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">
               Featured Projects
             </h2>
+
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
               A showcase of my work across design, AI, and cybersecurity domains
             </p>
@@ -43,6 +64,7 @@ export default function ProjectsSection() {
                 {/* Project Image */}
                 <div className="aspect-video bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-4xl opacity-50 group-hover:opacity-70 transition-opacity duration-300">
                       {project.category === "AI"
@@ -52,6 +74,7 @@ export default function ProjectsSection() {
                           : "🎨"}
                     </div>
                   </div>
+
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <Badge
                       variant="secondary"
@@ -96,6 +119,7 @@ export default function ProjectsSection() {
                       <ExternalLink className="w-4 h-4 mr-2" />
                       View Project
                     </Button>
+
                     <Button
                       size="sm"
                       variant="ghost"
@@ -111,46 +135,51 @@ export default function ProjectsSection() {
 
           {/* Online Profiles */}
           <div
-            className={`transition-all duration-1000 delay-800 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`transition-all duration-1000 delay-800 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
           >
             <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-slate-200 dark:border-slate-700">
-              <CardContent className="p-8">
+              <CardContent className="p-8 flex flex-col items-center">
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
                     Find Me Online
                   </h3>
+
                   <p className="text-slate-600 dark:text-slate-300">
                     Connect with me across various platforms and explore more of
                     my work
                   </p>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                  {socialProfiles.map((profile) => (
-                    <Button
-                      key={profile.name}
-                      variant="outline"
-                      className="h-20 flex-col gap-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105"
-                      asChild
-                    >
-                      <a
-                        href={profile.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
+
+                <div className="flex justify-center">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 gap-y-0"></div>
+                  {socialProfiles.map((profile) => {
+                    const Icon = iconMap[profile.icon as keyof typeof iconMap];
+
+                    return (
+                      <Button
+                        key={profile.name}
+                        variant="outline"
+                        className="h-20 flex-col gap-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105"
+                        asChild
                       >
-                        <div className="text-2xl">
-                          {profile.icon === "github" && "🐙"}
-                          {profile.icon === "behance" && "🎨"}
-                          {profile.icon === "kaggle" && "📊"}
-                          {profile.icon === "zindi" && "🏆"}
-                          {profile.icon === "huggingface" && "🤗"}
-                          {profile.icon === "linkedin" && "💼"}
-                        </div>
-                        <span className="text-sm font-medium">
-                          {profile.name}
-                        </span>
-                      </a>
-                    </Button>
-                  ))}
+                        <a
+                          href={profile.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <div className="text-2xl">{Icon && <Icon />}</div>
+
+                          <span className="text-sm font-medium">
+                            {profile.name}
+                          </span>
+                        </a>
+                      </Button>
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
