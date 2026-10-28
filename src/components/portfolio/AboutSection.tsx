@@ -1,13 +1,124 @@
+import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { Download, ExternalLink } from "lucide-react";
+import { ExternalLink, Lightbulb, type LucideIcon } from "lucide-react";
 import { skills, downloadableFiles, personalInfo } from "@/lib/data";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
+const skillCategoryStyles = {
+  Design: {
+    chip: "border-indigo-200 bg-indigo-50 text-indigo-700 dark:border-indigo-800/80 dark:bg-indigo-500/10 dark:text-indigo-200",
+    icon: "bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-300",
+    bar: "from-indigo-500 to-violet-500",
+    track: "bg-slate-200 dark:bg-slate-700",
+  },
+  "Tech and security": {
+    chip: "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800/80 dark:bg-emerald-500/10 dark:text-emerald-200",
+    icon: "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-300",
+    bar: "from-emerald-500 to-teal-500",
+    track: "bg-slate-200 dark:bg-slate-700",
+  },
+  Mindset: {
+    chip: "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800/80 dark:bg-amber-500/10 dark:text-amber-200",
+    icon: "bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-300",
+    bar: "from-amber-500 to-orange-500",
+    track: "bg-slate-200 dark:bg-slate-700",
+  },
+} as const;
+
+const getSkillLevelLabel = (level: number) => {
+  if (level >= 90) return "90%+ Expert";
+  if (level >= 80) return "80%+ Advanced";
+  if (level >= 70) return "70%+ Proficient";
+  return "60%+ Growing";
+};
+
 export default function AboutSection() {
   const { ref, isVisible } = useScrollAnimation();
+  const skillsSectionRef = useRef<HTMLDivElement | null>(null);
+  const [animateSkills, setAnimateSkills] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [animatedLevels, setAnimatedLevels] = useState<Record<string, number>>(
+    {},
+  );
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (!skillsSectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimateSkills(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(skillsSectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!animateSkills) {
+      setAnimatedLevels(
+        Object.fromEntries(
+          skills.map((skill) => [skill.name, reducedMotion ? skill.level : 0]),
+        ),
+      );
+      return;
+    }
+
+    if (reducedMotion) {
+      setAnimatedLevels(
+        Object.fromEntries(skills.map((skill) => [skill.name, skill.level])),
+      );
+      return;
+    }
+
+    let animationFrameIds: number[] = [];
+
+    skills.forEach((skill, index) => {
+      const startValue = 0;
+      const duration = 900 + index * 120;
+      const startTime = performance.now();
+
+      const updateValue = (timestamp: number) => {
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const currentValue = Math.round(
+          startValue + (skill.level - startValue) * progress,
+        );
+
+        setAnimatedLevels((previous) => ({
+          ...previous,
+          [skill.name]: currentValue,
+        }));
+
+        if (progress < 1) {
+          animationFrameIds.push(requestAnimationFrame(updateValue));
+        }
+      };
+
+      animationFrameIds.push(requestAnimationFrame(updateValue));
+    });
+
+    return () => {
+      animationFrameIds.forEach((frameId) => cancelAnimationFrame(frameId));
+    };
+  }, [animateSkills, reducedMotion]);
 
   return (
     <section id="about" ref={ref} className="py-20 bg-white dark:bg-slate-900">
@@ -67,34 +178,70 @@ export default function AboutSection() {
               </div>
 
               {/* Skills */}
-              <div className="space-y-4">
-                <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  Core Skills
-                </h4>
-                <div className="grid gap-4">
-                  {skills.map((skill, index) => (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xl">{skill.icon}</span>
-                          <span className="font-medium text-slate-900 dark:text-slate-100">
-                            {skill.name}
-                          </span>
+              <div ref={skillsSectionRef} className="space-y-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+                    Core Skills
+                  </h4>
+                </div>
+
+                <div className="grid gap-2.5 md:grid-cols-2">
+                  {skills.map((skill) => {
+                    const Icon = (skill.icon ?? Lightbulb) as LucideIcon;
+                    const categoryStyle =
+                      skillCategoryStyles[
+                        skill.category as keyof typeof skillCategoryStyles
+                      ];
+                    const displayValue = animatedLevels[skill.name] ?? 0;
+
+                    return (
+                      <div
+                        key={skill.name}
+                        className={`rounded-xl border border-slate-200 bg-white px-3 py-2.5 shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div
+                            className={`flex h-8 w-8 items-center justify-center rounded-lg ${categoryStyle.icon}`}
+                          >
+                            <Icon className="h-4 w-4" />
+                          </div>
+
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="min-w-0">
+                                <p className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">
+                                  {skill.name}
+                                </p>
+                                <p className="mt-1 text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                  {getSkillLevelLabel(skill.level)}
+                                </p>
+                              </div>
+
+                              <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+                                {displayValue}%
+                              </span>
+                            </div>
+
+                            <div className="mt-2">
+                              <div
+                                className={`h-1.5 w-full overflow-hidden rounded-full ${categoryStyle.track}`}
+                                role="progressbar"
+                                aria-label={`${skill.name} proficiency`}
+                                aria-valuenow={displayValue}
+                                aria-valuemin={0}
+                                aria-valuemax={100}
+                              >
+                                <div
+                                  className={`h-full rounded-full bg-gradient-to-r ${categoryStyle.bar} transition-[width] duration-1000 ease-out`}
+                                  style={{ width: `${displayValue}%` }}
+                                />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <span className="text-sm text-slate-500 dark:text-slate-400">
-                          {skill.level}%
-                        </span>
                       </div>
-                      <Progress
-                        value={skill.level}
-                        className="h-2"
-                        style={{
-                          animationDelay: `${index * 100}ms`,
-                          animationDuration: "1000ms",
-                        }}
-                      />
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
