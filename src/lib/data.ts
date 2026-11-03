@@ -6,7 +6,7 @@ export const personalInfo = {
   phone: "+250 783596959",
   location: "Kicukiro-Kigali",
   introVideo: "https://www.youtube.com/embed/E2PTRy3TXME",
-  profileImage: "/api/placeholder/400/400"
+  profileImage: "/IMG_3085.PNG"
 };
 
 import {
@@ -139,27 +139,27 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/Louis-Prince",
     images: [
       {
-        src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+        src: "/F1.png",
         alt: "Smart fire system hardware",
         caption: "Sensor overview"
       },
       {
-        src: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+        src: "/F2.png",
         alt: "Monitoring dashboard",
         caption: "Dashboard overview"
       },
       {
-        src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+        src: "/F4.png",
         alt: "Fire alert response dashboard",
         caption: "Alert flow"
       },
       {
-        src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+        src: "/F5.png",
         alt: "Smart device control boards",
         caption: "Control layer"
       },
       {
-        src: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=1200&q=80",
+        src: "/F6.png",
         alt: "Emergency response monitoring",
         caption: "Response view"
       }
@@ -226,11 +226,13 @@ export const projects: Project[] = [
     category: "Web App",
     skills: ["React", "UI/UX", "Dashboard", "Authentication"],
     images: [
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1522204523234-8729aa6e3f7f?auto=format&fit=crop&w=1200&q=80"
+      
+      "/Picture1.png",
+      "/SCREEN1 (1).png",
+      "/SCREEN1 (2).png",
+      "/SCREEN1 (3).png",
+      "/SCREEN1 (4).png",
+      "/SCREEN1 (5).png"
     ],
     cards: [
       {
@@ -294,11 +296,11 @@ export const projects: Project[] = [
     category: "AI",
     skills: ["Computer Vision", "Image Recognition", "Machine Learning", "Agriculture"],
     images: [
-      "https://images.unsplash.com/photo-1464226184884-fa52ac9fcf6f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80"
+      "/green1 (1).png",
+      "/green1 (2).png",
+      "/green1 (3).png",
+      "/green1 (1).png",
+      "/green1 (2).png"
     ],
     cards: [
       {
@@ -362,9 +364,9 @@ export const projects: Project[] = [
     category: "Cybersecurity",
     skills: ["Cybersecurity", "Python", "Windows Security", "Device Monitoring"],
     images: [
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
+      "/usb (1).jpg",
+      "/usb (2).png",
+      "/usb (3).png"
     ]
   },
   {
@@ -376,9 +378,12 @@ export const projects: Project[] = [
     category: "Cybersecurity",
     skills: ["Cybersecurity", "Python", "Network Security", "Simulation"],
     images: [
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
+      "/cybermodel (1).png",
+      "/cybermodel (2).png",
+      "/cybermodel (3).png",
+      "/cybermodel (4).png",
+      "/intro to cyber.png",
+      "/python fundamentals cert.png"
     ]
   },
   {
@@ -390,9 +395,11 @@ export const projects: Project[] = [
     category: "Cybersecurity",
     skills: ["SOC", "SIEM", "Splunk", "Sysmon", "Wireshark", "MITRE ATT&CK"],
     images: [
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+      
+      "x.png",
+      "/soc.png",
+      
+      "/soc analyst.png"
     ]
   },
   {
@@ -404,9 +411,13 @@ export const projects: Project[] = [
     category: "Cybersecurity",
     skills: ["Kali Linux", "Nmap", "Wireshark", "Network Security", "Linux"],
     images: [
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+      "/k1.png",
+      "/k2.png",
+      "/k3.png",
+      "/net1.png",
+      "/w1.png",
+      
+      "/network security cert.png"
     ]
   },
   {
@@ -418,23 +429,30 @@ export const projects: Project[] = [
     category: "UI/UX",
     skills: ["UI/UX", "Dashboard Design", "Figma", "Data Visualization", "User Research"],
     images: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1522204523234-8729aa6e3f7f?auto=format&fit=crop&w=1200&q=80"
+      "/svy1.png",
+      "/svy2.png",
+      "/svy3.png",
+      "/svy4.png",
+      "/svy5.png"
     ]
   },
   {
     id: 15,
-    title: "Creative Design & Digital Branding",
+    title: "Creative Design, Digital Branding & UI/UX DESIGN",
     description:
       "A collection of creative design work showcasing brand identity, logo design, typography, visual storytelling, and digital promotional materials for clear, consistent, and engaging communication across digital platforms.",
     tagline: "Creative design systems built for clarity, consistency, and impact",
     category: "Creative",
-    skills: ["Graphic Design", "Brand Identity", "Visual Design", "Digital Marketing", "Social Media Design"],
+    skills: ["Graphic Design", "Brand Identity", "Visual Design", "Digital Marketing", "Social Media Design","User Interface & User Experience (UI UX)"],
     images: [
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+      "/UI1.png",
+      "/UI2.png",
+      "/UI3.png",
+      "/UI4.png",
+      "/UI5.png",
+      "/UI6.png",
+      "/UI7.png",
+      "/UI8.png"
     ]
   },
   {
@@ -446,37 +464,14 @@ export const projects: Project[] = [
     category: "Infrastructure",
     skills: ["Windows Server", "Active Directory", "System Administration", "Networking"],
     images: [
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-    ]
-  },
-  {
-    id: 18,
-    title: "Linux Server Administration and Network Services",
-    description:
-      "A Linux administration lab covering server configuration, troubleshooting, command-line operations, and foundational infrastructure security.",
-    tagline: "Linux operations and networking fundamentals in practice",
-    category: "Infrastructure",
-    skills: ["Linux", "Ubuntu Server", "Networking", "System Administration", "Troubleshooting"],
-    images: [
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
-    ]
-  },
-  {
-    id: 19,
-    title: "Network Infrastructure and Firewall Lab",
-    description:
-      "A virtual networking environment covering firewall rules, traffic control, routing concepts, and secure communication between systems.",
-    tagline: "Networking and security practice through controlled lab environments",
-    category: "Networking",
-    skills: ["Networking", "pfSense", "Firewall", "Virtualization", "Network Security"],
-    images: [
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
+      "/AD1.png",
+      "/AD2.png",
+      "/AD3.png",
+      "/AD4.png",
+      "/AD5.png",
+      "/AD6.png",
+      "/AD7.png",
+      "/AD8.png"
     ]
   }
 ];
