@@ -232,7 +232,8 @@ export const projects: Project[] = [
       "/SCREEN1 (2).png",
       "/SCREEN1 (3).png",
       "/SCREEN1 (4).png",
-      "/SCREEN1 (5).png"
+      "/SCREEN1 (5).png",
+      "/MEPRESENTING.png"
     ],
     cards: [
       {
