@@ -128,6 +128,77 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: 3,
+    title: "E-learning Platform",
+    description:
+      "A SaaS-style learning dashboard with course management, user workflows, and authentication features.",
+    tagline: "A streamlined digital learning experience built for clarity and engagement",
+    category: "Web App",
+    skills: ["React", "UI/UX", "Dashboard", "Authentication"],
+    images: [
+      
+      "/Picture1.png",
+      "/SCREEN1 (1).png",
+      "/SCREEN1 (2).png",
+      "/SCREEN1 (3).png",
+      "/SCREEN1 (4).png",
+      "/SCREEN1 (5).png",
+      "/MEPRESENTING.png"
+    ],
+    cards: [
+      {
+        id: "elearning-overview",
+        type: "overview",
+        title: "Course operations dashboard",
+        body:
+          "I built a dashboard-first learning platform concept focused on clarity, content management, and user access patterns in a modern SaaS-style experience.",
+        role: "Product-minded UI developer",
+        timeline: "2024"
+      },
+      {
+        id: "elearning-problem",
+        type: "problem",
+        title: "Problem and solution",
+        body:
+          "Learning platforms often feel cluttered and difficult to manage. This concept focuses on simplifying course oversight, user access, and operational tasks inside a cleaner interface.",
+        tags: ["Dashboard UX", "Learning workflow", "Product design"]
+      },
+      {
+        id: "elearning-features",
+        type: "features",
+        title: "Key features",
+        body:
+          "The interface emphasizes role-based access, course organization, and a clear operational structure that supports both learners and administrators.",
+        tags: ["Course management", "Authentication", "Admin UX"]
+      },
+      {
+        id: "elearning-technology",
+        type: "technology",
+        title: "Technology stack",
+        tags: ["React", "TypeScript", "UI/UX", "Authentication", "Dashboard patterns"],
+        body:
+          "The product blends front-end clarity with structured product flows to create a clean educational experience."
+      },
+      {
+        id: "elearning-results",
+        type: "results",
+        title: "Outcomes",
+        body:
+          "The result is a product-style concept that balances usability, structure, and education-specific workflows in a polished, high-clarity interface.",
+        tags: ["Product design", "Workflow clarity", "User experience"]
+      },
+      {
+        id: "elearning-links",
+        type: "links",
+        title: "Project links",
+        links: [
+          { label: "Portfolio", url: "https://gatambalouis-prince.journoportfolio.com/" },
+          { label: "LinkedIn", url: "https://www.linkedin.com/in/gatamba-louis-prince-b32b24285" }
+        ]
+      }
+    ]
+  },
+  {
     id: 1,
     title: "FireGuard IoT System",
     description:
@@ -213,77 +284,6 @@ export const projects: Project[] = [
         links: [
           { label: "GitHub", url: "https://github.com/Louis-Prince" },
           { label: "Portfolio", url: "https://gatambalouis-prince.journoportfolio.com/" }
-        ]
-      }
-    ]
-  },
-  {
-    id: 3,
-    title: "E-learning Platform",
-    description:
-      "A SaaS-style learning dashboard with course management, user workflows, and authentication features.",
-    tagline: "A streamlined digital learning experience built for clarity and engagement",
-    category: "Web App",
-    skills: ["React", "UI/UX", "Dashboard", "Authentication"],
-    images: [
-      
-      "/Picture1.png",
-      "/SCREEN1 (1).png",
-      "/SCREEN1 (2).png",
-      "/SCREEN1 (3).png",
-      "/SCREEN1 (4).png",
-      "/SCREEN1 (5).png",
-      "/MEPRESENTING.png"
-    ],
-    cards: [
-      {
-        id: "elearning-overview",
-        type: "overview",
-        title: "Course operations dashboard",
-        body:
-          "I built a dashboard-first learning platform concept focused on clarity, content management, and user access patterns in a modern SaaS-style experience.",
-        role: "Product-minded UI developer",
-        timeline: "2024"
-      },
-      {
-        id: "elearning-problem",
-        type: "problem",
-        title: "Problem and solution",
-        body:
-          "Learning platforms often feel cluttered and difficult to manage. This concept focuses on simplifying course oversight, user access, and operational tasks inside a cleaner interface.",
-        tags: ["Dashboard UX", "Learning workflow", "Product design"]
-      },
-      {
-        id: "elearning-features",
-        type: "features",
-        title: "Key features",
-        body:
-          "The interface emphasizes role-based access, course organization, and a clear operational structure that supports both learners and administrators.",
-        tags: ["Course management", "Authentication", "Admin UX"]
-      },
-      {
-        id: "elearning-technology",
-        type: "technology",
-        title: "Technology stack",
-        tags: ["React", "TypeScript", "UI/UX", "Authentication", "Dashboard patterns"],
-        body:
-          "The product blends front-end clarity with structured product flows to create a clean educational experience."
-      },
-      {
-        id: "elearning-results",
-        type: "results",
-        title: "Outcomes",
-        body:
-          "The result is a product-style concept that balances usability, structure, and education-specific workflows in a polished, high-clarity interface.",
-        tags: ["Product design", "Workflow clarity", "User experience"]
-      },
-      {
-        id: "elearning-links",
-        type: "links",
-        title: "Project links",
-        links: [
-          { label: "Portfolio", url: "https://gatambalouis-prince.journoportfolio.com/" },
-          { label: "LinkedIn", url: "https://www.linkedin.com/in/gatamba-louis-prince-b32b24285" }
         ]
       }
     ]

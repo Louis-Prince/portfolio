@@ -36,7 +36,7 @@ export default function HeroSection() {
         poster="/IMG_3085.PNG"
         className="absolute inset-0 h-full w-full object-cover opacity-60"
       >
-        <source src="/gif2.mp4" type="video/mp4" />
+        <source src="/gif1.mp4" type="video/mp4" />
       </video>
 
       {/* Existing background treatment sits above the video with reduced opacity */}
