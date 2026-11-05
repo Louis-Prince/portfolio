@@ -128,16 +128,21 @@ export default function ProjectShowcase({
             {project.title} gallery
           </DialogPrimitive.Title>
 
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={() => onOpenChange(false)}
-            aria-label="Close project gallery"
-            className="absolute right-4 top-4 z-30 h-11 w-11 rounded-full border border-slate-900/10 bg-white/80 text-slate-900 shadow-lg backdrop-blur-sm transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/60"
-          >
-            <X className="h-5 w-5" />
-          </Button>
+          <div className="group absolute right-4 top-4 z-30">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              onClick={() => onOpenChange(false)}
+              aria-label="Close project gallery"
+              className="h-11 w-11 rounded-full border border-slate-900/10 bg-white/80 text-slate-900 shadow-lg backdrop-blur-sm transition-all duration-200 hover:bg-red-500 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/60 group-hover:border-red-500"
+            >
+              <X className="h-5 w-5" />
+            </Button>
+            <span className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full border border-red-200 bg-red-500/95 px-2 py-1 text-[10px] font-medium tracking-wide text-white opacity-0 shadow-md transition-all duration-200 group-hover:opacity-100">
+              Close
+            </span>
+          </div>
 
           <div className="relative z-10 flex w-full max-w-6xl items-center justify-center">
             <div className="w-full">

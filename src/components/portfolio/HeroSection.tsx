@@ -25,8 +25,23 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
-      {/* Animated Background Glow */}
+    <section className="relative isolate min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
+      {/* Video background layer */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster="/IMG_3085.PNG"
+        className="absolute inset-0 h-full w-full object-cover opacity-60"
+      >
+        <source src="/gif2.mp4" type="video/mp4" />
+      </video>
+
+      {/* Existing background treatment sits above the video with reduced opacity */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/80 via-blue-50/70 to-indigo-100/70 dark:from-slate-900/80 dark:via-slate-800/75 dark:to-indigo-900/80" />
+
       <motion.div
         className="absolute w-[500px] h-[500px] bg-blue-400 rounded-full blur-3xl opacity-20"
         animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
@@ -38,7 +53,7 @@ export default function HeroSection() {
         transition={{ duration: 18, repeat: Infinity }}
       />
 
-      <div className="container mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-6">
         <motion.div
           variants={container}
           initial="hidden"
