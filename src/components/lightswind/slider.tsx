@@ -338,8 +338,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
             key={`thumb-${index}`}
             className={cn(
               "absolute block h-5 w-5 rounded-full border-2 border-primary bg-background shadow-sm transition-all",
-              // Key change: Optimized transition for immediate feedback
-              "duration-[&lsqb;50ms&rsqb;] ease-out", // Very short transition for responsiveness
+              "ease-out",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               "hover:scale-110",
               draggingIndex === index && "scale-110 cursor-grabbing", // Apply dragging style
@@ -354,6 +353,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
               left: `${getValuePercent(value)}%`,
               top: "50%",
               transform: "translate(-50%, -50%)", // Center thumb precisely
+              transitionDuration: "50ms",
               touchAction: "none" // Prevents browser gestures like scrolling
             }}
             onPointerDown={(e) => handlePointerDown(e, index)}

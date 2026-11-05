@@ -366,7 +366,7 @@ export const GrainCarousel = forwardRef<GrainCarouselHandle, GrainCarouselProps>
                 {/* 3D Carousel Track */}
                 <div
                     ref={trackRef}
-                    className="flex items-center cursor-grab active:cursor-grabbing will-change-transform transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                    className="flex items-center cursor-grab active:cursor-grabbing will-change-transform transition-transform duration-500 ease-out"
                     style={{
                         transform: `translateX(${trackOffset}px)`,
                         gap: `${gap}px`,
@@ -395,7 +395,7 @@ export const GrainCarousel = forwardRef<GrainCarouselHandle, GrainCarouselProps>
                                 onMouseMove={(e) => handleCardMouseMove(e, index)}
                                 onMouseLeave={() => handleCardMouseLeave(index)}
                                 className={cn(
-                                    "relative shrink-0 rounded-2xl cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group",
+                                    "relative shrink-0 rounded-2xl cursor-pointer transition-all duration-500 ease-out group",
                                     isActive
                                         ? "z-20 shadow-2xl ring-1 ring-white/20"
                                         : "z-10 shadow-lg hover:brightness-75"
@@ -411,7 +411,7 @@ export const GrainCarousel = forwardRef<GrainCarouselHandle, GrainCarouselProps>
                             >
                                 {/* 3D Hover Tilt & Lift Container */}
                                 <div
-                                    className="w-full h-full relative rounded-[inherit] overflow-hidden transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] bg-zinc-900 border border-white/10 dark:border-white/5"
+                                    className="w-full h-full relative rounded-[inherit] overflow-hidden transition-transform duration-300 ease-out bg-zinc-900 border border-white/10 dark:border-white/5"
                                     style={{
                                         borderRadius: parsedRadius,
                                         transformStyle: "preserve-3d",
